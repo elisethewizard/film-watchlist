@@ -15,13 +15,13 @@ const App = () => {
   const getMovieRequest = async (req) => {
     setIsLoading(true)
     let data = []
-    const url = `http://www.omdbapi.com/?apikey=38d99a91&s=${req}`
+    const url = `https://www.omdbapi.com/?apikey=38d99a91&s=${req}`
     const res = await fetch(url)
     const resJson = await res.json()
     if (resJson.Search) {
       for (let i = 0; i < resJson.Search.length; i++) {
         if (resJson.Search[i]) {
-          const res2 = await fetch(`http://www.omdbapi.com/?apikey=38d99a91&plot=short&i=${resJson.Search[i].imdbID}`)
+          const res2 = await fetch(`https://www.omdbapi.com/?apikey=38d99a91&plot=short&i=${resJson.Search[i].imdbID}`)
           const res2Json = await res2.json()
           data.push(res2Json)
         }  
