@@ -14,7 +14,7 @@ export default function Card(props){
     return (
         <div className='card-cont'>
 
-            <img className='poster' src={props.poster !== 'N/A' ? props.poster : '/src/assets/poster-placeholder.png'}/>
+            <img className='poster' src={props.poster !== 'N/A' ? props.poster : 'src/assets/poster-placeholder.png'}/> 
 
             <div className='header'>
                 <h1 className='title'>{props.title}</h1>
