@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router"
 import { useReducer, useEffect, useRef } from "react"
 import type { Film } from './types.ts'
 import Layout from './pages/Layout.tsx'
