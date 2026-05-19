@@ -53,7 +53,7 @@ function Card(props: { film: Film }) {
     return (
         <div className='card-cont'>
 
-            <img className='poster' src={poster ? poster : 'src/assets/poster-placeholder.png'} />
+            <img className='poster' src={poster ? poster : '/assets/poster-placeholder.png'} />
 
             <div className='header'>
                 <h1 className='title'>{title}</h1>
