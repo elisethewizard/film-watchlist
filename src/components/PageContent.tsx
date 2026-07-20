@@ -5,7 +5,7 @@ import List from './List.tsx'
 import { TbMovie } from 'react-icons/tb'
 
 function PageContent(props: { page: 'search'|'watchlist', ids: string[] }) {
-    const { page, ids } = props
+    const { ids } = props
 
     const [details, setDetails] = useState<Film[]>([])
     const [isLoading, setIsLoading] = useState(false)
