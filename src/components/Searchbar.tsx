@@ -1,19 +1,18 @@
-import { useState } from "react"
+import { type Dispatch, type SetStateAction } from "react"
 import { TbSearch, TbEraser } from "react-icons/tb"
 
-function Searchbar(props: { getFilmRequest: (a: string) => Promise<void> }) {
-    const { getFilmRequest } = props
-    const [input, setInput] = useState('')
+function Searchbar(props: { searchQuery: string, setSearchQuery: Dispatch<SetStateAction<string>>, searchFilms: (s: string) => void }) {
+    const { searchQuery, setSearchQuery, searchFilms } = props
 
     function search() {
-        if (!input) {
+        if (!searchQuery) {
             return
         }
-        getFilmRequest(input)
+        searchFilms(searchQuery)
     }
 
     function resetInput() {
-        setInput('')
+        setSearchQuery('')
     }
 
     return (
@@ -25,8 +24,8 @@ function Searchbar(props: { getFilmRequest: (a: string) => Promise<void> }) {
                         placeholder='Search for a movie'
                         type="text"
                         id='searchbar-input'
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyUp={(e) => {
                             if (e.key === 'Enter') {
                                 search()
