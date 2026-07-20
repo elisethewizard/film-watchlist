@@ -10,7 +10,7 @@ function Card(props: { film: Film }) {
     const { id, title, poster, rating, duration, genres, description } = film
     const [readMore, setReadMore] = useState(false)
 
-    const isAdded = watchlist.some(film => film.id === id)
+    const isAdded = watchlist.some(idInWatchlist => idInWatchlist === id)
 
     function getDesc() {
         { /* ↓ Previous version for reference. */
@@ -47,7 +47,7 @@ function Card(props: { film: Film }) {
 
     function toggleWatchlist() {
         const action = isAdded ? 'remove' : 'add'
-        dispatch({ type: action, film: film })
+        dispatch({ type: action, id: id })
     }
 
     return (

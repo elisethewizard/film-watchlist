@@ -1,12 +1,10 @@
-import type { Film } from "./types"
-
-export default function watchlistReducer(state: Film[], action: { type: 'add' | 'remove', film: Film }): Film[] {
+export default function watchlistReducer(state: string[], action: { type: 'add' | 'remove', id: string }): string[] {
     switch (action.type) {
         case 'add': {
-            return [...state, action.film];
+            return [...state, action.id];
         }
         case 'remove': {
-            return state.filter((film: Film) => film.id !== action.film.id);
+            return state.filter((id: string) => id !== action.id);
         }
         default: {
             throw Error('Unknown action: ' + action.type);

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router"
 import { useReducer, useEffect, useRef } from "react"
-import type { Film } from './types.ts'
 import Layout from './pages/Layout.tsx'
 import Search from './pages/Search.tsx'
 import MyWatchlist from './pages/MyWatchlist.tsx'
@@ -11,7 +10,7 @@ function App() {
     const [watchlist, dispatch] = useReducer(watchlistReducer, null, createInitState)
     const firstUpdate = useRef(true)
 
-    function createInitState(): Film[] {
+    function createInitState(): string[] {
         return localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')!) : []
     }
 
