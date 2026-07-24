@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Searchbar from '../components/Searchbar.tsx'
-import { getIdsBySearch } from '../api.tsx'
+import { fetchIds } from '../api.tsx'
 import PageContent from '../components/PageContent.tsx'
 
 function Search() {
@@ -8,7 +8,7 @@ function Search() {
     const [ids, setIds] = useState<string[]>([])
 
     async function searchFilms(s: string) {
-        const data = await getIdsBySearch(s)
+        const data = await fetchIds(s)
         setIds(data)
     }
     

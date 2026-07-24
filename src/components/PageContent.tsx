@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Film } from '../types.ts'
-import { getFilmsAll } from '../api.tsx'
+import { fetchFilms } from '../api.tsx'
 import List from './List.tsx'
 import { TbMovie } from 'react-icons/tb'
 
@@ -17,7 +17,7 @@ function PageContent(props: { page: 'search'|'watchlist', ids: string[] }) {
             setIsLoading(true) 
             setError(null)
             try {
-                const data = await getFilmsAll(ids)
+                const data = await fetchFilms(ids)
                 setDetails(data)
             } catch(err) {
                 setError(err)

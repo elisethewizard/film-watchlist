@@ -1,5 +1,7 @@
 import type { Film } from "./types"
 
+const cache: Record<string, any> = {}
+
 function formatFilm(data: any) {
     const { imdbID, Title, Poster, imdbRating, Runtime, Genre, Plot } = data
     const newFilm: Film = {
@@ -11,23 +13,19 @@ function formatFilm(data: any) {
         genres: Genre !== 'N/A' ? Genre : null,
         description: Plot !== 'N/A' ? Plot : null,
     }
-    saveFilmToStorage(newFilm)
     return newFilm
 }
 
-function saveFilmToStorage(film: Film) {
-    const filmsExist = window.sessionStorage.getItem('films')
-
-    if (filmsExist) {
-        const existingData: Film[] = JSON.parse(window.sessionStorage.getItem('films')!)
-        const newValue = [...existingData, film]
-        window.sessionStorage.setItem('films', JSON.stringify(newValue))
-    } else {
-        window.sessionStorage.setItem('films', JSON.stringify([film]))
+async function cached(key: string, callback: (...args: any[]) => any) {
+    if (cache[key]) {
+        return cache[key]
     }
+    const data = await callback(key)
+    cache[key] = data
+    return data
 }
 
-export async function getIdsBySearch(search: string) {
+async function getIdsBySearch(search: string) {
     const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${search}`
     const res = await fetch(url)
     const data = await res.json()
@@ -41,7 +39,11 @@ export async function getIdsBySearch(search: string) {
     return ids
 }
 
-export async function getFilmViaFetch(id: string) {
+export async function fetchIds(search: string) {
+    return cached(search, getIdsBySearch)
+}
+
+async function getFilmById(id: string) {
     const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&plot=short&i=${id}`
     const res = await fetch(url)
     const data = await res.json()
@@ -53,25 +55,13 @@ export async function getFilmViaFetch(id: string) {
     return formatFilm(data)
 }
 
-export function getFilmViaStorage(id: string) {
-    const filmInStorage: Film = window.sessionStorage.getItem('films') &&
-        JSON.parse(window.sessionStorage.getItem('films')!).find((film: Film) => film.id === id)
-
-    if (!filmInStorage) {
-        return null
-    }
-    
-    return filmInStorage
+async function fetchFilm(id: string) {
+    return cached(id, getFilmById)
 }
 
-export async function getFilmById(id: string) {
-    const film = getFilmViaStorage(id) || await getFilmViaFetch(id)
-    return film
-}
-
-export async function getFilmsAll(ids: string[]) {
-    const promises = ids.map(id => getFilmById(id))
-    const promise = await Promise.allSettled(promises)
-    const data = promise.filter(res => res.status === 'fulfilled').map(res => res.value)
+export async function fetchFilms(ids: string[]) {
+    const promises = ids.map(id => fetchFilm(id))
+    const results = await Promise.allSettled(promises)
+    const data = results.filter(res => res.status === 'fulfilled').map(res => res.value)
     return data
 }
