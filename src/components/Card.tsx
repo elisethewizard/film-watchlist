@@ -1,14 +1,13 @@
 import { TbCirclePlusFilled, TbCircleMinus, TbStarFilled } from "react-icons/tb"
 import type { Film } from '../types.ts'
 import { WatchlistContext, WatchlistDispatchContext } from "../WatchlistContext.ts"
-import { useContext, useState } from "react"
+import { useContext, useState, memo } from "react"
 
 function Card(props: { film: Film }) {
     const dispatch = useContext(WatchlistDispatchContext)!
     const watchlist = useContext(WatchlistContext)
-    const { film } = props
-    const { id, title, poster, rating, duration, genres, description } = film
     const [readMore, setReadMore] = useState(false)
+    const { id, title, poster, rating, duration, genres, description } = props.film
 
     const isAdded = watchlist.some(idInWatchlist => idInWatchlist === id)
 
@@ -85,8 +84,7 @@ function Card(props: { film: Film }) {
             <div className='desc'>{ getDesc() }</div>
 
         </div>
-
     )
 }
 
-export default Card
+export default memo(Card)
