@@ -1,8 +1,8 @@
-import { type Dispatch, type SetStateAction } from "react"
+import { useState } from "react"
 import { TbSearch, TbEraser } from "react-icons/tb"
 
-function Searchbar(props: { searchQuery: string, setSearchQuery: Dispatch<SetStateAction<string>>, searchFilms: (s: string) => void }) {
-    const { searchQuery, setSearchQuery, searchFilms } = props
+function Searchbar({ searchFilms }: { searchFilms: (s: string) => void }) {
+    const [searchQuery, setSearchQuery] = useState('')
 
     function search() {
         if (!searchQuery) {

@@ -1,13 +1,10 @@
-import { Outlet, Link } from "react-router"
+import { Outlet } from "react-router"
+import Nav from "../components/Nav"
 
 function Layout() {
     return (
         <div className='app-cont'>
-            <nav>
-                <Link to='/'>Find your film</Link>
-                <Link to='/watchlist'>My Watchlist</Link>
-            </nav>
-
+            <Nav />
             <Outlet />
         </div>
     )

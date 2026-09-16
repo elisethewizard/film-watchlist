@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import Searchbar from '../components/Searchbar.tsx'
-import { fetchIds } from '../api.tsx'
-import PageContent from '../components/PageContent.tsx'
+import { fetchIds } from '../api.ts'
+import List from '../components/List.tsx'
+import PlaceholderSearch from '../components/SearchPlaceholder.tsx'
 
 function Search() {
-    const [searchQuery, setSearchQuery] = useState('')
     const [ids, setIds] = useState<string[]>([])
 
-    async function searchFilms(s: string) {
-        const data = await fetchIds(s)
+    async function searchFilms(query: string) {
+        const data = await fetchIds(query)
         setIds(data)
     }
     
     return (
         <main className='search-cont'>
-            <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchFilms={searchFilms} />
-            <PageContent page='search' ids={ids} />
+            <Searchbar searchFilms={searchFilms} />
+            { ids.length ? <List ids={ids} /> : <PlaceholderSearch /> }
         </main>
     )
 }

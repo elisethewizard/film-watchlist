@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { TbCirclePlusFilled } from "react-icons/tb"
 
-function ResultsPlaceholder() {
+function WatchlistPlaceholder() {
     return (
         <div className='main-content results-placeholder-cont'>
             <h2>Your watchlist is looking a little empty...</h2>
@@ -13,4 +13,4 @@ function ResultsPlaceholder() {
     )
 }
 
-export default ResultsPlaceholder
+export default WatchlistPlaceholder
