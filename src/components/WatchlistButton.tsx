@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { TbCirclePlusFilled, TbCircleMinus } from "react-icons/tb"
-import { WatchlistContext, WatchlistDispatchContext } from "../WatchlistContext"
+import { WatchlistContext, WatchlistDispatchContext } from "../ContextLogic"
 
 function WatchlistButton({ id }: { id: string }) {
     const watchlist = useContext(WatchlistContext)

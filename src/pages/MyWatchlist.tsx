@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import WatchlistPlaceholder from '../components/WatchlistPlaceholder.tsx'
 import List from '../components/List.tsx'
-import { WatchlistContext } from '../WatchlistContext.ts'
+import { WatchlistContext } from '../ContextLogic.tsx'
 
 function MyWatchlist() {
     const watchlist = useContext(WatchlistContext)
