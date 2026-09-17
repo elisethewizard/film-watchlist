@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, type ActionDispatch, type ReactNode } from "react"
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export const WatchlistContext = createContext<string[]>([])
 export const WatchlistDispatchContext = createContext<ActionDispatch<[action: { type: "add" | "remove"; id: string; }]> | null>(null)
@@ -16,6 +17,14 @@ function watchlistReducer(state: string[], action: { type: 'add' | 'remove', id:
         }
     }
 }
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 60, /* 1 hour */
+        },
+    },
+})
 
 export default function ContextLogic({ children }: { children: ReactNode }) {
     const [watchlist, dispatch] = useReducer(watchlistReducer, null, createInitState)
@@ -40,10 +49,12 @@ export default function ContextLogic({ children }: { children: ReactNode }) {
     }, [watchlist])
 
     return (
+        <QueryClientProvider client={queryClient}>
         <WatchlistContext value={watchlist}>
             <WatchlistDispatchContext value={dispatch}>
                 {children}
             </WatchlistDispatchContext>
         </WatchlistContext>
+        </QueryClientProvider>
     )
 }

@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { useState, type Dispatch, type SetStateAction } from "react"
 import { TbSearch, TbEraser } from "react-icons/tb"
 
-function Searchbar({ searchFilms }: { searchFilms: (s: string) => void }) {
+function Searchbar({ setQueryFinal }: { setQueryFinal: Dispatch<SetStateAction<string>> }) {
     const [searchQuery, setSearchQuery] = useState('')
 
     function search() {
         if (!searchQuery) {
             return
         }
-        searchFilms(searchQuery)
+        setQueryFinal(searchQuery)
     }
 
     function resetInput() {

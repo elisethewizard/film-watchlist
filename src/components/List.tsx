@@ -1,50 +1,46 @@
 import { useEffect, useState } from "react"
-import { fetchFilms } from "../api"
+import { getFilmOptions } from "../api"
 import type { Film } from "../types"
 import Card from "./Card"
+import { useQueries } from "@tanstack/react-query"
+import Error from "./Error"
+import Loading from "./Loading"
 
 function List({ ids }: { ids: string[] }) {
-    const [data, setData] = useState<Film[]>([])
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState<any>(null)
+    const [films, setFilms] = useState<Film[]>([])
+    const { data, error, isPending } = useQueries({
+        queries: ids.map((id) => getFilmOptions(id)),
+        combine: (filmQueries) => {
+            return {
+                data: filmQueries.map((query) => query.data),
+                isPending: filmQueries.some((query) => query.isPending),
+                error: filmQueries.find((query) => query.error)?.error,
+            }
+        },
+    })
 
     useEffect(() => {
-        async function getFilms(ids: string[]) {
-            setIsLoading(true)
 
-            // clear previous data
-            if (data) {
-                setData([])
-            }
+        // clear previous results
+        setFilms([])
 
-            setError(null)
-            try {
-                const data = await fetchFilms(ids)
-                setData(data)
-            } catch (err) {
-                setError(err)
-            } finally {
-                setIsLoading(false)
-            }
+        if (data && data.every((film) => !!film)) {
+            setFilms(data)
         }
-        getFilms(ids)
-    }, [ids])
+        
+    }, [data])
     
     if (error) {
-        return (
-            <h1 className='main-content error'>There was an error: {error || error.message}</h1>
-        )
+        return <Error message={error.message} />
     }
 
-    if (isLoading || !data.length) {
-        return (
-            <h1 className='main-content loading'>Loading...</h1>
-        )
+    if (isPending || !films.length) {
+        return <Loading type='films' />
     }
 
     return (
         <div className='main-content list-cont'>
-            { data.map(element => <Card film={element} key={element.id} />) }
+            { films.map((element) => <Card film={element} key={element.id} />) }
         </div>
     )
 }
