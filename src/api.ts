@@ -23,8 +23,12 @@ async function fetchIds(search: string) {
     const res = await fetch(url)
     const data = await res.json()
 
-    if (!data || !(data.Search)) {
+    if (!data || !data.Response) {
         throw new Error('Fetch finished with invalid response.')
+    }
+
+    if (!data.Search || !data.Search.length) {
+        throw new Error(`Sorry, we couldn't find any films that match your search.`)
     }
     
     const ids: string[] = data.Search.map((item: any) => item.imdbID)
