@@ -19,7 +19,7 @@ async function fetchIds(search: string) {
     if (!search) {
         return []
     }
-    const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${search}`
+    const url = `/api/search/${search}`
     const res = await fetch(url)
     const data = await res.json()
 
@@ -33,7 +33,7 @@ async function fetchIds(search: string) {
 }
 
 async function fetchFilm(id: string) {
-    const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&plot=short&i=${id}`
+    const url = `/api/id/${id}`
     const res = await fetch(url)
     const data = await res.json()
 
