@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router"
 import Layout from './pages/Layout.tsx'
 import Search from './pages/Search.tsx'
 import MyWatchlist from './pages/MyWatchlist.tsx'
-import ContextLogic from "./ContextLogic.tsx"
+import ContextProviders from "./ContextProviders.tsx"
 
 function App() {
     return (
-        <ContextLogic>
+        <ContextProviders>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
@@ -15,7 +15,7 @@ function App() {
                     </Route>
                 </Routes>
             </BrowserRouter>
-        </ContextLogic>
+        </ContextProviders>
     )
 }
 

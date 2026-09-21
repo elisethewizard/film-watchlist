@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
     },
 })
 
-export default function ContextLogic({ children }: { children: ReactNode }) {
+export default function ContextProviders({ children }: { children: ReactNode }) {
     const [watchlist, dispatch] = useReducer(watchlistReducer, null, createInitState)
 
     function createInitState(): string[] {
@@ -50,11 +50,11 @@ export default function ContextLogic({ children }: { children: ReactNode }) {
 
     return (
         <QueryClientProvider client={queryClient}>
-        <WatchlistContext value={watchlist}>
-            <WatchlistDispatchContext value={dispatch}>
-                {children}
-            </WatchlistDispatchContext>
-        </WatchlistContext>
+            <WatchlistContext value={watchlist}>
+                <WatchlistDispatchContext value={dispatch}>
+                    {children}
+                </WatchlistDispatchContext>
+            </WatchlistContext>
         </QueryClientProvider>
     )
 }
