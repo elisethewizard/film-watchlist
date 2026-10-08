@@ -45,8 +45,20 @@ Film discovery and cataloging site built with React Router and using API of the 
 
 ## Screenshots
 
-![Screenshot of home page. It shows header with navigation and a searchbar at the top of the page.](/public/screenshots/screenshot-1.png)
+<div>
+    <img src="public/screenshots/screenshot-1.png" alt="Screenshot of home page. It shows header with navigation and a searchbar at the top of the page." width="416" />
+    <img src="public/screenshots/screenshot-2.png" alt="Screenshot of home page with a list of films." width="416" />
+</div>
 
-![Screenshot of home page with a list of films.](/public/screenshots/screenshot-2.png)
+<div>
+    <img src="public/screenshots/screenshot-3.png" alt="Screenshot of watchlist page with a list of user's watched films." width="416" />
+</div>
 
-![Screenshot of watchlist page with a list of user's watched films.](/public/screenshots/screenshot-3.png)
+<h3>Mobile viewport</h3>
+
+<div>
+    <img src="public/screenshots/screenshot-mobile-1.png" alt="Screenshot of home page. It shows header with navigation and a searchbar at the top of the page." width="206" />
+    <img src="public/screenshots/screenshot-mobile-2.png" alt="Screenshot of home page with a list of films." width="206" />
+    <img src="public/screenshots/screenshot-mobile-3.png" alt="Screenshot of empty watchlist page." width="206" />
+    <img src="public/screenshots/screenshot-mobile-4.png" alt="Screenshot of watchlist page with a list of user's watched films." width="206" />
+</div>
