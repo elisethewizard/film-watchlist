@@ -1,9 +1,9 @@
 import { defineHandler } from "nitro"
 
 export default defineHandler(async (event) => {
-    const { query } = event.context.params!
+    const { query, page } = event.context.params!
 
-    const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${query}`
+    const url = `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${query}&page=${page}`
     const res = await fetch(url)
 
     if (!res.ok) {

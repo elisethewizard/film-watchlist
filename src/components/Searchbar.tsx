@@ -35,7 +35,7 @@ function Searchbar({ setQueryFinal }: { setQueryFinal: Dispatch<SetStateAction<s
                 </label>
                 <TbEraser className="icon" size={18} onClick={resetInput} />
             </div>
-            <button onClick={search}>Search</button>
+            <button className="btn search-btn" onClick={search}>Search</button>
         </div>
     )
 }

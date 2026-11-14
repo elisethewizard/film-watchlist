@@ -107,6 +107,23 @@ button:focus-visible {
     border-radius: 6px;
 }
 
+.btn {
+    border: 1px solid #D1D5DB;
+    background-color: #fbf9fc;
+    color: var(--gray-dark);
+    font-family: var(--font-main);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 325ms ease-in-out;
+}
+
+.btn:hover,
+.btn:active {
+    color: #2f3845;
+    background-color: #ececf5;
+    border-color: #ececf5;
+}
+
 .icon {
     color: var(--gray-main);
     transition: all 200ms ease-in-out;
@@ -181,7 +198,7 @@ main:has(.loading) {
     padding: 1.25rem 1rem; /* 20px 16px */
 }
 
-.main-content.list-cont {
+.main-content .list-cont {
     gap: 0;
 }
 
@@ -268,24 +285,12 @@ main:has(.loading) {
     border-radius: 4px;
 }
 
-.searchbar-cont button {
-    background: #fbf9fc;
+.searchbar-cont .search-btn {
     border: none;
     border-left: 1px solid #D1D5DB;
     border-radius: 0 6px 6px 0;
-    font-family: var(--font-main);
     font-size: .875rem; /* 14px */
-    font-weight: 500;
-    color: var(--gray-dark);
     padding: .5rem 1.625rem; /* 8px 26px */
-    transition: all 325ms ease-in-out;
-}
-
-.searchbar-cont button:hover,
-.searchbar-cont button:active {
-    color: #2f3845;
-    background-color: #ececf5;
-    border-color: #ececf5;
 }
 
 /* <-- CARD --> */
@@ -393,6 +398,32 @@ main:has(.loading) {
     cursor: pointer;
 }
 
+/* <-- PAGINATION --> */
+
+.pagination {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.pagination,
+.pagination button {
+    display: flex;
+    align-items: center;
+}
+
+.pagination button {
+    padding: .375rem .75rem; /* 6px 12px */
+    gap: .375rem; /* 6px */
+    border-radius: 6px;
+    box-shadow: var(--box-shadow-main);
+    user-select: none;
+}
+
+.pagination span {
+    font-size: 1.063rem; /* 17px */
+}
+
 /* <-- QUERIES --> */
 
 @media only screen and (min-width: 768px) {
@@ -442,7 +473,7 @@ main:has(.loading) {
         max-width: 200px;
     }
 
-    .searchbar-cont button {
+    .searchbar-cont .search-btn {
         padding: .625rem 2.25rem; /* 10px 36px */
     }
 

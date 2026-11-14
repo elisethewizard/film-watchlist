@@ -1,4 +1,4 @@
-import { queryOptions } from '@tanstack/react-query'
+import { keepPreviousData, queryOptions } from '@tanstack/react-query'
 import type { Film } from "./types"
 
 function formatFilm(data: any) {
@@ -15,11 +15,11 @@ function formatFilm(data: any) {
     return newFilm
 }
 
-async function fetchIds(search: string) {
+async function fetchIds(search: string, page: number) {
     if (!search) {
-        return []
+        return {}
     }
-    const url = `/api/search/${search}`
+    const url = `/api/search/${search}/${page}`
     const res = await fetch(url)
     const data = await res.json()
 
@@ -33,7 +33,7 @@ async function fetchIds(search: string) {
     
     const ids: string[] = data.Search.map((item: any) => item.imdbID)
 
-    return ids
+    return { ids: ids, hasMore: Number(data.totalResults) > (10 * page) }
 }
 
 async function fetchFilm(id: string) {
@@ -48,10 +48,11 @@ async function fetchFilm(id: string) {
     return formatFilm(data)
 }
 
-export function getIdsOptions(search: string) {
+export function getIdsOptions(search: string, page: number) {
     return queryOptions({
-        queryKey: ['search', search],
-        queryFn: async () => await fetchIds(search),
+        queryKey: ['search', search, page],
+        queryFn: async () => await fetchIds(search, page),
+        placeholderData: keepPreviousData,
     })
 }
 

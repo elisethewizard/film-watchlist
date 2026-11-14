@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react"
+
 interface Film {
     id: string,
     title: string,
@@ -8,4 +10,11 @@ interface Film {
     description: string | null,
 }
 
-export type { Film }
+type PageData = {
+    page: number,
+    setPage: Dispatch<SetStateAction<number>>,
+    hasMore: boolean | undefined,
+    isPlaceholderData: boolean,
+}
+
+export type { Film, PageData }

@@ -29,7 +29,8 @@ Film discovery and cataloging site built with React Router and using API of the 
 │   │   ├── List.tsx                   # List element, receives ids & fetches films data
 │   │   ├── Card.tsx                   # Film's card
 │   │   ├── Description.tsx            # Description & toggling readmore
-│   │   └── WatchlistButton.tsx        # Add/remove this film from watchlist
+│   │   ├── WatchlistButton.tsx        # Add/remove this film from watchlist
+│   │   └── Pagination.tsx             # Managing pages
 │   ├── index.css                      # Styling
 │   ├── types.ts                       # TypeScript types definitions
 │   ├── main.tsx
@@ -38,7 +39,8 @@ Film discovery and cataloging site built with React Router and using API of the 
 │   │                                    for managing it
 │   └── api.ts                         # Fetch management functions
 ├── server/api/                        # Server endpoints
-│   ├── search/[query].ts              # Fetching a list of film ids by user's search query
+│   ├── search/[query]/[page].ts       # Fetching a list of film ids by user's search 
+│   │                                    query and page
 │   └── id/[id].ts                     # Fetching a film by id
 └── public/                            # Assets
 ```
