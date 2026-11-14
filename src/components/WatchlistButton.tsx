@@ -14,21 +14,20 @@ function WatchlistButton({ id }: { id: string }) {
     }
 
     return (
-        <div 
-            className='watchlist'
-            role="button"
+        <button 
+            className='watchlist color-secondary'
             onClick={toggleWatchlist}
         >
             {isAdded ?   
             <>
-                <TbCircleMinus className="icon" size={18} />
+                <TbCircleMinus size={18} color="currentColor" aria-hidden />
                 Remove
             </> :
             <>
-                <TbCirclePlusFilled className="icon" size={18} />
+                <TbCirclePlusFilled size={18} color="currentColor" aria-hidden />
                 Watchlist
             </>}
-        </div>
+        </button>
     )
 }
 

@@ -6,7 +6,7 @@ function WatchlistPlaceholder() {
         <div className='main-content results-placeholder-cont'>
             <h2>Your watchlist is looking a little empty...</h2>
             <Link to='/' className='link'>
-                <TbCirclePlusFilled size={18} />
+                <TbCirclePlusFilled size={18} aria-hidden />
                 Let's add some movies!
             </Link>
         </div>

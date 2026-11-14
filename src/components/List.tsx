@@ -42,9 +42,9 @@ function List({ ids, pageData }: { ids: string[], pageData: PageData }) {
 
     return (
         <div className='main-content'>
-            <div className="list-cont">
+            <ul className="list-cont">
                 { films.map((element) => <Card film={element} key={element.id} />) }
-            </div>
+            </ul>
             {// show pagination if it's not an only page
             (page !== 1 || hasMore) && <Pagination {...pageData} /> }
         </div>

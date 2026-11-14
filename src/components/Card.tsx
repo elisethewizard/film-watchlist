@@ -7,14 +7,18 @@ function Card(props: { film: Film }) {
     const { id, title, poster, rating, duration, genres, description } = props.film
 
     return (
-        <div className='card-cont'>
+        <li className='card-cont'>
 
-            <img className='poster' src={poster ? poster : '/assets/poster-placeholder.png'} />
+            <img
+                className='poster'
+                src={poster ? poster : '/assets/poster-placeholder.png'}
+                alt={`Poster of ${title}.`}
+            />
 
             <div className='header'>
                 <h1 className='title'>{title}</h1>
                 {rating && <div className='rating'>
-                    <TbStarFilled color='#FEC654' size={16} />
+                    <TbStarFilled color='#FEC654' size={16} aria-hidden />
                     <p>{rating}</p>
                 </div>}
             </div>
@@ -24,7 +28,7 @@ function Card(props: { film: Film }) {
             <WatchlistButton id={id} />
             <Description desc={description} />
 
-        </div>
+        </li>
     )
 }
 

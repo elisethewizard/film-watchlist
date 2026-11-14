@@ -22,6 +22,7 @@ export default function Pagination({ page, setPage, hasMore, isPlaceholderData }
                     cursor: disabled ? 'default' : 'pointer',
                     flexDirection: type === 'previous' ? 'row' : 'row-reverse',
                 }}
+                aria-hidden={disabled}
                 aria-label={`Go to the ${type} page`}
             >
                 <Icon size={18} aria-hidden />

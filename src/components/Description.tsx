@@ -11,21 +11,20 @@ function Description({ desc }: { desc: string | null }) {
         case "long": return (
             <div className="desc">
                 {readMore ? desc : `${desc!.slice(0, 230).trim()}..`}
-                <span
-                    className='desc-span'
-                    role="button"
+                <button
+                    className='desc-btn'
                     onClick={() => setReadMore(prev => !prev)}
                 >
                     {readMore ? 'Hide' : 'Read more'}
-                </span>
+                </button>
             </div>
-        )
+        );
         case "short": return (
             <div className="desc">{desc}</div>
-        )
+        );
         case "none": return (
             <div className="desc">Description unavailable.</div>
-        )
+        );
     }
 }
 

@@ -19,7 +19,7 @@ function Searchbar({ setQueryFinal }: { setQueryFinal: Dispatch<SetStateAction<s
         <div className='searchbar-cont'>
             <div className="searchbar-inner">
                 <label htmlFor='searchbar-input'>
-                    <TbSearch className="icon" size={18} />
+                    <TbSearch className="color-secondary" size={18} aria-hidden />
                     <input
                         placeholder='Search for a movie'
                         type="text"
@@ -33,7 +33,9 @@ function Searchbar({ setQueryFinal }: { setQueryFinal: Dispatch<SetStateAction<s
                         }}
                     />
                 </label>
-                <TbEraser className="icon" size={18} onClick={resetInput} />
+                <button onClick={resetInput} aria-label="Clear input">
+                    <TbEraser className="color-secondary" size={18} aria-hidden />
+                </button>
             </div>
             <button className="btn search-btn" onClick={search}>Search</button>
         </div>
