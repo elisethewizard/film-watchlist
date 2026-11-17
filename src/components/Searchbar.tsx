@@ -33,7 +33,7 @@ function Searchbar({ setQueryFinal }: { setQueryFinal: Dispatch<SetStateAction<s
                         }}
                     />
                 </label>
-                <button onClick={resetInput} aria-label="Clear input">
+                <button onClick={resetInput} className="clear-btn" aria-label="Clear input">
                     <TbEraser className="color-secondary" size={18} aria-hidden />
                 </button>
             </div>
