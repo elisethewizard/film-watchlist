@@ -10,6 +10,7 @@ Film discovery and cataloging site built with React Router and using API of the 
 * **TypeScript** - type safety
 * **TanStack Query** - state and fetching management
 * **Vite** - bundling
+* **Cypress** - end-to-end testing
 
 ## Project structure
 
@@ -42,6 +43,9 @@ Film discovery and cataloging site built with React Router and using API of the 
 │   ├── search/[query]/[page].ts       # Fetching a list of film ids by user's search 
 │   │                                    query and page
 │   └── id/[id].ts                     # Fetching a film by id
+├── cypress/
+│   ├── e2e/tests.cy.js                # Tests
+│   └── fixtures/                      # Test fixtures for stubbing api requests
 └── public/                            # Assets
 ```
 
