@@ -38,7 +38,7 @@ export default function ContextProviders({ children }: { children: ReactNode }) 
 
     // sync localStorage with context
     useEffect(() => {
-        if (!watchlist.length || typeof window === 'undefined') {
+        if (typeof window === 'undefined') {
             return
         }
         try {
